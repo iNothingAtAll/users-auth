@@ -3,8 +3,8 @@
 -- =============================================
 
 CREATE TABLE IF NOT EXISTS usuarios (
-    id                INTEGER PRIMARY KEY AUTOINCREMENT,
-    usuario           TEXT NOT NULL UNIQUE,
+    id                INTEGER PRIMARY KEY AUTOINCREMENT,   
+    nombre           TEXT NOT NULL UNIQUE,
     nombre_publico    TEXT NOT NULL,
     correo            TEXT NOT NULL UNIQUE,
     telefono          TEXT,
@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS usuarios (
     saldo             REAL DEFAULT 0.0,
     fecha_registro    DATETIME DEFAULT CURRENT_TIMESTAMP,
     activo            INTEGER DEFAULT 1,
-    payment_token     TEXT
 );
 
 CREATE TABLE IF NOT EXISTS transacciones (
