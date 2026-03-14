@@ -10,7 +10,6 @@ Para el correcto funcionamiento de la API, es necesario que exista una base de d
 La imagen de la API está disponible en GitHub Container Registry y se puedes descargar individualmente usando:
 
 
-### Descargar
 ```bash
 docker pull ghcr.io/inothingatall/users-auth:latest
 ```
