@@ -3,3 +3,4 @@ sqlmodel
 pymysql
 python-dotenv
 uvicorn
+pydantic
