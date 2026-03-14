@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 
 from api.database import init_db, close_db_connection
+from api.routes import info
 
 
 # Se inicializa la base de datos antes de empezar a escuchar peticiones
@@ -23,13 +24,4 @@ api = FastAPI(
 )
 
 
-# Muestra todos los enpoint de la api en los que se puede acceder de forma publica
-@api.get("/info", tags=["info"])
-async def get_info():
-    return {
-        "title": api.title,
-        "version": api.version,
-        "routes": {
-            "info" : {"endpoint":"http://localhost:8000/info", "method":"GET"},
-        }
-    }
+api.include_router(info.router)
