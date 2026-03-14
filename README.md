@@ -7,19 +7,25 @@ Para el correcto funcionamiento de la API, es necesario que exista una base de d
 
 
 ## Ejecución con Docker
+La imagen de la API está disponible en GitHub Container Registry y se puedes descargar individualmente usando:
 
-La imagen de la aplicación está disponible en GitHub Container Registry. Puedes descargar y ejecutar la aplicación de la siguiente manera:
 
-### Descargar la imagen
+### Descargar
 ```bash
 docker pull ghcr.io/inothingatall/users-auth:latest
 ```
 
-### Ejecutar el contenedor
+
+## Docker Compose
+Se implementó Docker Compose para desplegar una base de datos SQL y hacer una conexión simulada con el fin de probar el funcionamiento de la API.
+
+
+### Ejecutar
 ```bash
-docker run -p 8000:8000 \
-  --env-file .env \
-  ghcr.io/inothingatall/users-auth:latest
+docker-compose up -d
 ```
 
-Asegúrate de que el archivo `.env` en tu máquina local contiene todas las variables de entorno necesarias para la conexión a la base de datos.
+### Eliminar
+```bash
+docker-compose down -v
+```
