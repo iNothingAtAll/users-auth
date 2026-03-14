@@ -1,0 +1,63 @@
+services:
+
+
+  # Despliega el servicio de autenticacion de los usuarios
+  users-auth:
+    container_name: users-auth
+    build: .
+    restart: always
+
+    ports:
+      - 8000:8000
+
+    networks:
+      - users-network
+
+    depends_on:
+      - users-db
+
+
+    # Despliega la base de datos de usuarios
+  users-db:
+    container_name: users-db
+    image: mariadb:11.4.8-noble
+    restart: always
+    env_file: .env
+    volumes:
+      - users:/var/lib/mysql
+
+    networks:
+      - users-network
+      - phpmyadmin-network
+
+
+  # Despliega el manager para la base de datos
+  phpmyadmin:  
+    container_name: phpmyadmin
+    image: phpmyadmin:5.2.3-apache
+    restart: always
+    env_file: .env
+
+    depends_on:
+      - users-db
+
+    ports:
+      - 8080:80
+
+    networks:
+      - phpmyadmin-network
+
+
+# Todas redes que aislan los servicios entre si
+networks:
+  users-network:
+    driver: bridge
+  
+  phpmyadmin-network:
+    driver: bridge
+
+
+
+# Todos los volumenes generados por base de datos
+volumes:
+  users:
