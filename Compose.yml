@@ -24,6 +24,7 @@ services:
     restart: always
     env_file: .env
     volumes:
+      - ./db:/docker-entrypoint-initdb.d/
       - users:/var/lib/mysql
 
     networks:
