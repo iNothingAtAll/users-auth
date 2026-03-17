@@ -36,15 +36,5 @@ class Transaccion(SQLModel, table=True):
     usuario: Usuario = Relationship(back_populates="transacciones")
 
 
-# Modelos de entrada para recarga y retiro de saldo
 
-class RecargaInput(SQLModel):
-    id_usuario: int
-    monto: float
-    descripcion: Optional[str] = None
-
-class RetirarInput(SQLModel):
-    id_usuario: int
-    monto: float
-    descripcion: Optional[str] = None
 

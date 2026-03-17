@@ -1,4 +1,5 @@
 from pydantic import BaseModel, ConfigDict
+from typing import Optional
 
 
 class UserResponse(BaseModel):
@@ -23,3 +24,9 @@ class UserUpdate(BaseModel):
     telefono: str | None = None
     correo: str | None = None
     password_hash: str | None = None
+
+
+class TransaccionCreate(BaseModel):
+    id_usuario: int
+    monto: float
+    descripcion: Optional[str] = None

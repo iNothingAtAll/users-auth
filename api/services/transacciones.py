@@ -1,19 +1,20 @@
 from fastapi import HTTPException
 from sqlmodel import Session
 from api.schemas import RecargaInput, RetirarInput, Transaccion, Usuario
+from api.models import TransaccionCreate
 
 class TransaccionService:
     def __init__(self, session: Session):
         self.session = session
 
-    def recargar(self, data: RecargaInput):
+    def recargar(self, data: TransaccionCreate):
         usuario = self.session.get(Usuario, data.id_usuario)
         usuario.saldo += data.monto
         self.session.add(usuario)
         self.session.commit()
         return self.crear_transaccion(data)
         
-    def retirar(self, data: RetirarInput):
+    def retirar(self, data: TransaccionCreate):
         usuario = self.session.get(Usuario, data.id_usuario)
         if usuario.saldo < data.monto:
             raise HTTPException(status_code=400, detail="Saldo insuficiente")
@@ -23,7 +24,7 @@ class TransaccionService:
         return self.crear_transaccion(data)
 
 
-    def crear_transaccion(self, data: RecargaInput | RetirarInput):
+    def crear_transaccion(self, data: TransaccionCreate):
         nueva_transaccion = Transaccion(**data.model_dump())
         self.session.add(nueva_transaccion)
         self.session.commit()
