@@ -1,7 +1,11 @@
--- 03_insert_bonos.sql
--- 3 bonos de prueba para Uniesport
-
-INSERT INTO bonos (id, id_usuario, tipo, monto, usado, fecha_expira) VALUES
-  (1, 12, 'bienvenida', 20000.0, 0, '2025-12-31 23:59:59'),
-  (2, 38, 'recarga', 15000.0, 1, '2025-09-30 23:59:59'),
-  (3, 29, 'fidelidad', 30000.0, 0, '2026-03-01 23:59:59');
+INSERT INTO bonos (id_usuario, tipo, monto, usado, fecha_expira) VALUES
+(1, 'bienvenida', 50.00, 0, DATE_ADD(CURRENT_DATE, INTERVAL 30 DAY)),
+(2, 'recarga', 25.00, 1, DATE_ADD(CURRENT_DATE, INTERVAL 15 DAY)),
+(3, 'fidelidad', 100.00, 0, DATE_ADD(CURRENT_DATE, INTERVAL 60 DAY)),
+(4, 'bienvenida', 50.00, 1, DATE_ADD(CURRENT_DATE, INTERVAL 20 DAY)),
+(5, 'recarga', 30.00, 0, DATE_ADD(CURRENT_DATE, INTERVAL 45 DAY)),
+(6, 'fidelidad', 200.00, 0, DATE_ADD(CURRENT_DATE, INTERVAL 90 DAY)),
+(7, 'bienvenida', 50.00, 1, DATE_ADD(CURRENT_DATE, INTERVAL 10 DAY)),
+(8, 'recarga', 40.00, 0, DATE_ADD(CURRENT_DATE, INTERVAL 25 DAY)),
+(9, 'fidelidad', 150.00, 0, DATE_ADD(CURRENT_DATE, INTERVAL 120 DAY)),
+(10, 'bienvenida', 50.00, 1, DATE_ADD(CURRENT_DATE, INTERVAL 5 DAY));
