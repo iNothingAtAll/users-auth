@@ -2,6 +2,7 @@ from fastapi import HTTPException
 from sqlmodel import Session
 from api.schemas import Transaccion, Usuario
 from api.models import TransaccionCreate
+from sqlmodel import Session, select
 
 class TransaccionService:
     def __init__(self, session: Session):
@@ -37,3 +38,7 @@ class TransaccionService:
         if not usuario:
             raise HTTPException(status_code=404, detail="Usuario no encontrado")
         return {"saldo": usuario.saldo}
+    
+    def get_transacciones(self, id_usuario: int):
+        transacciones = self.session.exec(select(Transaccion).where(Transaccion.id_usuario == id_usuario)).all()
+        return transacciones
