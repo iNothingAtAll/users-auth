@@ -5,7 +5,8 @@
 CREATE TABLE IF NOT EXISTS usuarios (
     id                INTEGER PRIMARY KEY AUTO_INCREMENT,   
     nombre           TEXT NOT NULL UNIQUE,
-    nombre_publico    TEXT NOT NULL,
+    nickname          TEXT NOT NULL,
+    identificacion    TEXT NOT NULL UNIQUE,
     correo            TEXT NOT NULL UNIQUE,
     telefono          TEXT,
     password_hash     TEXT NOT NULL,
@@ -27,26 +28,12 @@ CREATE TABLE IF NOT EXISTS transacciones (
 CREATE TABLE IF NOT EXISTS apuestas (
     id            INTEGER PRIMARY KEY AUTO_INCREMENT,
     id_usuario    INTEGER NOT NULL,
-    id_evento_api TEXT NOT NULL,        -- el id que viene de la API externa
-    tipo_evento   TEXT NOT NULL,        -- "profesional" o "universitario"
     monto         REAL NOT NULL,
     prediccion    TEXT NOT NULL,
     cuota         REAL NOT NULL,
     estado        TEXT DEFAULT 'pendiente',
     fecha         DATETIME DEFAULT CURRENT_TIMESTAMP,
     ganancia      REAL DEFAULT 0.0,
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
-);
-
-
-
-CREATE TABLE IF NOT EXISTS sesiones (
-    id           INTEGER PRIMARY KEY AUTO_INCREMENT,
-    id_usuario   INTEGER NOT NULL,
-    token        TEXT NOT NULL UNIQUE,
-    fecha_inicio DATETIME DEFAULT CURRENT_TIMESTAMP,
-    fecha_expira DATETIME NOT NULL,
-    activo       INTEGER DEFAULT 1,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
 
