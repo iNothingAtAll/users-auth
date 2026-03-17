@@ -35,3 +35,7 @@ class Transaccion(SQLModel, table=True):
     
     # Relación
     usuario: Usuario = Relationship(back_populates="transacciones")
+
+
+
+
