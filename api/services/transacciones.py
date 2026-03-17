@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 from sqlmodel import Session
-from api.schemas import RecargaInput, RetirarInput, Transaccion, Usuario
+from api.schemas import Transaccion, Usuario
 from api.models import TransaccionCreate
 
 class TransaccionService:
