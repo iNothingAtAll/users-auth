@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 
 from api.database import init_db, close_db_connection
-from api.routes import users
+from api.routes import users, transacciones
 
 
 # Se inicializa la base de datos antes de empezar a escuchar peticiones
@@ -24,4 +24,5 @@ api = FastAPI(
 )
 
 
-api.include_router(users.router, prefix="/api/v1")
+api.include_router(users.router)
+api.include_router(transacciones.router)
