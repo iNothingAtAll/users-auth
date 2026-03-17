@@ -11,11 +11,7 @@ class TransaccionService:
         usuario.saldo += data.monto
         self.session.add(usuario)
         self.session.commit()
-        nueva_transaccion = Transaccion(**data.model_dump())
-        self.session.add(nueva_transaccion)
-        self.session.commit()
-        self.session.refresh(nueva_transaccion)
-        return nueva_transaccion
+        return self.crear_transaccion(data)
         
     def retirar(self, data: RetirarInput):
         usuario = self.session.get(Usuario, data.id_usuario)
@@ -24,11 +20,16 @@ class TransaccionService:
         usuario.saldo -= data.monto
         self.session.add(usuario)
         self.session.commit()
+        return self.crear_transaccion(data)
+
+
+    def crear_transaccion(self, data: RecargaInput | RetirarInput):
         nueva_transaccion = Transaccion(**data.model_dump())
         self.session.add(nueva_transaccion)
         self.session.commit()
         self.session.refresh(nueva_transaccion)
         return nueva_transaccion
+
 
     def consultar_saldo(self, id_usuario: int):
         usuario = self.session.get(Usuario, id_usuario)
