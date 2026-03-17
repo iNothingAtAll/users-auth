@@ -4,7 +4,7 @@ from pydantic import BaseModel, ConfigDict
 class UserResponse(BaseModel):
     id: int
     nombre: str
-    nombre_publico: str
+    nickname: str
     saldo: float
     
     model_config = ConfigDict(from_attributes=True)
@@ -12,14 +12,15 @@ class UserResponse(BaseModel):
 
 class UserCreate(BaseModel):
     nombre: str
-    nombre_publico: str
-    telefono: str
+    nickname: str
+    identificacion: str
     correo: str
+    telefono: str
     password_hash: str
 
 
 class UserUpdate(BaseModel):
-    nombre_publico: str | None = None
+    nickname: str | None = None
     telefono: str | None = None
     correo: str | None = None
     password_hash: str | None = None

@@ -9,7 +9,8 @@ class Usuario(SQLModel, table=True):
     
     id: Optional[int] = Field(default=None, primary_key=True)
     nombre: str = Field(unique=True, index=True, max_length=255)
-    nombre_publico: str = Field(max_length=255)
+    nickname: str = Field(max_length=255)
+    identificacion: str = Field(unique=True, index=True, max_length=255)
     correo: str = Field(unique=True, index=True, max_length=255)
     telefono: Optional[str] = Field(default=None, max_length=20)
     password_hash: str = Field(max_length=255)
